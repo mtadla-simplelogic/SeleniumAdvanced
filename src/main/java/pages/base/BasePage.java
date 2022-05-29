@@ -46,5 +46,4 @@ public class BasePage {
     public WebElement getRandomElement(List<WebElement> elements) {
         return elements.get(new Random().nextInt(elements.size()));
     }
-
 }
