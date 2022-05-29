@@ -18,6 +18,7 @@ public class TestBase {
         chromeOptions.addArguments("start-maximized");
 
         driver = new ChromeDriver(chromeOptions);
+        driver.get("http://146.59.32.4/");
     }
 
     @AfterMethod
