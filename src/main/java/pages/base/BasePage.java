@@ -19,9 +19,9 @@ public class BasePage {
         actions = new Actions(driver);
     }
 
-    WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    public WebDriver driver;
+    public WebDriverWait wait;
+    public Actions actions;
 
     public void sendKeys(WebElement element, String text){
         System.out.println("Typing: " + text);

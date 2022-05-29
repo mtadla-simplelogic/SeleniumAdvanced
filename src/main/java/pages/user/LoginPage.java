@@ -13,7 +13,8 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".no-account a")
     private WebElement goToRegistrationBtn;
 
-    public void goToRegistration(){
+    public RegistrationPage goToRegistration(){
         click(goToRegistrationBtn);
+        return new RegistrationPage(driver);
     }
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
+import pages.user.LoginPage;
 
 public class TopMenuPage extends BasePage {
     public TopMenuPage(WebDriver driver) {
@@ -13,8 +14,16 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".user-info a")
     private WebElement goToSignInBtn;
 
-    public void goToSignIn(){
+    @FindBy(css = ".account span")
+    private WebElement userName;
+
+    public LoginPage goToSignIn(){
         click(goToSignInBtn);
+        return new LoginPage(driver);
+    }
+
+    public String getLoggedInUserName(){
+        return userName.getText();
     }
 
 }

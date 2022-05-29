@@ -1,9 +1,11 @@
 package pages.user;
 
+import models.SocialTitle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
+import pages.commons.TopMenuPage;
 
 import java.util.List;
 
@@ -33,36 +35,53 @@ public class RegistrationPage extends BasePage {
     @FindBy(name = "psgdpr")
     private WebElement psgdprCbx;
 
-    @FindBy(name = ".form-footer button")
+    @FindBy(css = ".form-footer button")
     private WebElement saveBtn;
 
-    public void selectMale() {
-        genders.get(0).click();
+    public RegistrationPage selectSocialTitle(SocialTitle socialTitle) {
+        System.out.println("Seleting social title " + socialTitle);
+
+        switch (socialTitle){
+            case Mr:
+                genders.get(0).click();
+                break;
+            case Mrs:
+                genders.get(1).click();
+                break;
+        }
+        return this;
     }
 
-    public void setFirstName(String firstName) {
+    public RegistrationPage setFirstName(String firstName) {
         sendKeys(this.firstName, firstName);
+        return this;
     }
 
-    public void setLastName(String lastName) {
+    public RegistrationPage setLastName(String lastName) {
         sendKeys(this.lastName, lastName);
+        return this;
     }
 
-    public void setEmail(String email) {
+    public RegistrationPage setEmail(String email) {
         sendKeys(this.email, email);
+        return this;
     }
 
-    public void setPassword(String password) {
+    public RegistrationPage setPassword(String password) {
         sendKeys(this.password, password);
+        return this;
     }
 
-    public void acceptPolices() {
-        click(customerPrivacyCbx);
-        click(psgdprCbx);
+    public RegistrationPage acceptPolices() {
+        System.out.println("Accepting all required policies");
+        customerPrivacyCbx.click();
+        psgdprCbx.click();
+        return this;
     }
 
-    public void submitForm() {
+    public TopMenuPage submitForm() {
         click(saveBtn);
+        return new TopMenuPage(driver);
     }
 
 }
