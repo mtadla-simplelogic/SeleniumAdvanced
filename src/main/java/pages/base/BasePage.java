@@ -4,9 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class BasePage {
     public BasePage(WebDriver driver) {
@@ -34,6 +37,14 @@ public class BasePage {
     public void click(WebElement element){
         System.out.println("Clicking: " + element.getText());
         element.click();
+    }
+
+    public void waitToBeVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement getRandomElement(List<WebElement> elements) {
+        return elements.get(new Random().nextInt(elements.size()));
     }
 
 }
