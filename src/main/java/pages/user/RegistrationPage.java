@@ -41,7 +41,7 @@ public class RegistrationPage extends BasePage {
     public RegistrationPage selectSocialTitle(SocialTitle socialTitle) {
         System.out.println("Seleting social title " + socialTitle);
 
-        switch (socialTitle){
+        switch (socialTitle) {
             case Mr:
                 genders.get(0).click();
                 break;

@@ -23,23 +23,23 @@ public class BasePage {
     public WebDriverWait wait;
     public Actions actions;
 
-    public void sendKeys(WebElement element, String text){
+    public void sendKeys(WebElement element, String text) {
         System.out.println("Typing: " + text);
         element.sendKeys(text);
     }
 
-    public void sendKeysWithClear(WebElement element, String text){
+    public void sendKeysWithClear(WebElement element, String text) {
         System.out.println("Clearing input");
         element.clear();
         sendKeys(element, text);
     }
 
-    public void click(WebElement element){
+    public void click(WebElement element) {
         System.out.println("Clicking: " + element.getText());
         element.click();
     }
 
-    public void waitToBeVisible(WebElement element){
+    public void waitToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
