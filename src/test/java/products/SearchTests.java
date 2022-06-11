@@ -2,6 +2,7 @@ package products;
 
 import base.Pages;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -18,9 +19,12 @@ public class SearchTests extends Pages {
 
         Assertions.assertThat(searchResults).isNotEmpty();
 
+        SoftAssertions softAssertions = new SoftAssertions();
+
         for (String searchResult : searchResults){
-            Assertions.assertThat(searchResult).contains(productToSearch);
+            softAssertions.assertThat(searchResult).contains(productToSearch);
         }
 
+        softAssertions.assertAll();
     }
 }
