@@ -10,7 +10,7 @@ public class CheckoutConfirmationPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = "h1")
+    @FindBy(css = ".h1")
     private WebElement orderConfirmationMsg;
 
     @FindBy(xpath = "//div[@id='order-details']//li[1]")

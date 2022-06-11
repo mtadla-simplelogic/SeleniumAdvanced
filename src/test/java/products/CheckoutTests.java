@@ -3,6 +3,7 @@ package products;
 import base.Pages;
 import helpers.RandomHelper;
 import models.SocialTitle;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 import pages.checkout.PersonalInfoCheckoutPage;
 
@@ -37,22 +38,16 @@ public class CheckoutTests extends Pages {
         shippingCheckoutPage.confirmDeliveryOption();
 
         paymentsCheckoutPage.peyByCheck()
-                .agreeToThermsOfService();
+                .agreeToThermsOfService()
+                .confirmPayment();
 
+        Assertions.assertThat(checkoutConfirmationPage.getOrderConfirmationMsg()).contains("YOUR ORDER IS CONFIRMED");
 
+        String orderNumber = checkoutConfirmationPage.getOrderNumber();
 
-        // 2 ADDRESSES -> wymagane dane
-        // klikamy continue
+        topMenuPage.goToMyAccount();
 
-
-        // 3 SHIPPING METHOD ->  klikamy continue
-
-        //4 PAYMENT -> zaznacz Pay by Check i checkbox I agree to the terms of service
-        // klik Place order
-
-        // sprzawczy czy tekst YOUR ORDER IS CONFIRMED zostal wyswietlony
-        // ***dla chętnych: weryfikacja danych kupionego produktu (nazwa, cena, ilosc, cena laczna)
-
+        myAccountPage.goToHistoryOfOrders();
         // pkt 5 do zmiennej zapisz wygenerowany numer zamowienia
 
         // przejdz do 'Your account'

@@ -28,6 +28,10 @@ public class TopMenuPage extends BasePage {
         return new LoginPage(driver);
     }
 
+    public void goToMyAccount(){
+        click(userName);
+    }
+
     public String getLoggedInUserName(){
         return userName.getText();
     }

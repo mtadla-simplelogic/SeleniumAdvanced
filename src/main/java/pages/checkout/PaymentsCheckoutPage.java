@@ -9,19 +9,29 @@ public class PaymentsCheckoutPage extends BasePage {
     public PaymentsCheckoutPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(css = "#payment-option-1")
     private WebElement peyByCheck;
+
+    @FindBy(css = "#payment-confirmation button")
+    private WebElement confirmPayment;
 
     @FindBy(css = "[id='conditions_to_approve[terms-and-conditions]']")
     private WebElement agreeToThermsOfService;
 
-    public PaymentsCheckoutPage peyByCheck(){
+    public PaymentsCheckoutPage peyByCheck() {
         click(peyByCheck);
         return this;
     }
 
-    public void agreeToThermsOfService(){
+    public PaymentsCheckoutPage agreeToThermsOfService() {
         click(agreeToThermsOfService);
+        return this;
+
+    }
+
+    public void confirmPayment() {
+        click(confirmPayment);
     }
 
 }
