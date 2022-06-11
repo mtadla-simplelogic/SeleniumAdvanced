@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 import pages.checkout.PersonalInfoCheckoutPage;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class CheckoutTests extends Pages {
 
     @Test
@@ -41,7 +43,7 @@ public class CheckoutTests extends Pages {
                 .agreeToThermsOfService()
                 .confirmPayment();
 
-        Assertions.assertThat(checkoutConfirmationPage.getOrderConfirmationMsg()).contains("YOUR ORDER IS CONFIRMED");
+        assertThat(checkoutConfirmationPage.getOrderConfirmationMsg()).contains("YOUR ORDER IS CONFIRMED");
 
         String orderNumber = checkoutConfirmationPage.getOrderNumber();
 
