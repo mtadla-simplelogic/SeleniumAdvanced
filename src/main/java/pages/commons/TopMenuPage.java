@@ -11,6 +11,12 @@ public class TopMenuPage extends BasePage {
         super(driver);
     }
 
+    @FindBy(css = "[name='s']")
+    private WebElement searchInput;
+
+    @FindBy(css = "#search_widget .search")
+    private WebElement searchBtn;
+
     @FindBy(css = ".user-info a")
     private WebElement goToSignInBtn;
 
@@ -26,4 +32,8 @@ public class TopMenuPage extends BasePage {
         return userName.getText();
     }
 
+    public void searchForProduct(String productToSearch) {
+        sendKeys(searchInput, productToSearch);
+        click(searchBtn);
+    }
 }
