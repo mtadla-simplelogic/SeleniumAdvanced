@@ -1,7 +1,10 @@
 package products;
 
 import base.Pages;
+import helpers.RandomHelper;
+import models.SocialTitle;
 import org.testng.annotations.Test;
+import pages.checkout.PersonalInfoCheckoutPage;
 
 public class CheckoutTests extends Pages {
 
@@ -13,9 +16,30 @@ public class CheckoutTests extends Pages {
 
         cartPopupPage.proceedToCheckout();
 
-        // w koszyku clikc -> Proceed to checkout
-        // 1 PERSONAL INFORMATION -> wypelnienie wymaganych danych
-        // klikamy continue
+        cartPage.proceedToCheckout();
+
+        personalInfoCheckoutPage
+                .selectSocialTitle(SocialTitle.Mr)
+                .setFirstName("Jan")
+                .setLastName("Kowalski")
+                .setEmail(RandomHelper.getRandomEmail())
+                .setPassword("123qwe")
+                .acceptPolices();
+
+        personalInfoCheckoutPage.goToAddressCheckoutStep();
+
+        addressCheckoutPage.setAddress("testtest")
+                .selectState("Arizona")
+                .setPostcode("77777")
+                .setCity("xxxx")
+                .confirmAddresses();
+
+        shippingCheckoutPage.confirmDeliveryOption();
+
+        paymentsCheckoutPage.peyByCheck()
+                .agreeToThermsOfService();
+
+
 
         // 2 ADDRESSES -> wymagane dane
         // klikamy continue

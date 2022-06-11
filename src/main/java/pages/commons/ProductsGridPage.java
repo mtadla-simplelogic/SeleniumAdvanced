@@ -30,9 +30,7 @@ public class ProductsGridPage extends BasePage {
     public List<String> getProductNames() {
         List<String> productsNames = new ArrayList<>();
 
-        List<WebElement> products = getProducts(getQuantityOfProducts());
-
-        for (WebElement product : products) {
+        for (WebElement product : getProducts(getQuantityOfProducts())) {
             productsNames.add(product.getText());
         }
         return productsNames;
@@ -41,14 +39,16 @@ public class ProductsGridPage extends BasePage {
     private int getQuantityOfProducts() {
         String quantityOfProducts = totalProducts.getText()
                 .replace("There is ", "")
-                .replace(" product.", "");
+                .replace(" product.", "")
+                .replace("There are ", "")
+                .replace(" products.", "");
 
         return Integer.parseInt(quantityOfProducts);
     }
 
     public void openProductWithName(String productName) {
-        for (WebElement element : getProducts(8)){
-            if(element.getText().equals(productName)){
+        for (WebElement element : getProducts(8)) {
+            if (element.getText().equals(productName)) {
                 element.click();
                 return;
             }

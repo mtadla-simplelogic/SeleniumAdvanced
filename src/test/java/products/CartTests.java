@@ -10,7 +10,8 @@ public class CartTests extends Pages {
     public void shouldAddProductToCart() {
         productsGridPage.openProductWithName("HUMMINGBIRD T-SHIRT");
 
-        productDetailsPage.setQuantity(3)
+        productDetailsPage
+                .setQuantity(3)
                 .addToCart();
 
         cartPopupPage.proceedToCheckout();

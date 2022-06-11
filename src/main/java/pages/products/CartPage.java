@@ -27,6 +27,10 @@ public class CartPage extends BasePage {
     @FindBy(css = ".remove-from-cart")
     private WebElement removeFromCartBtn;
 
+
+    @FindBy(css = ".checkout .btn-primary")
+    private WebElement proceedToCheckoutBtn;
+
     public String getProductName() {
         return productName.getText();
     }
@@ -50,5 +54,9 @@ public class CartPage extends BasePage {
     public String getEmptyBasketMsg() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[data-id_customization='0']")));
         return driver.findElement(By.cssSelector(".no-items")).getText();
+    }
+
+    public void proceedToCheckout() {
+        click(proceedToCheckoutBtn);
     }
 }
