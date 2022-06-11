@@ -3,9 +3,7 @@ package products;
 import base.Pages;
 import helpers.RandomHelper;
 import models.SocialTitle;
-import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
-import pages.checkout.PersonalInfoCheckoutPage;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -46,19 +44,16 @@ public class CheckoutTests extends Pages {
         assertThat(checkoutConfirmationPage.getOrderConfirmationMsg()).contains("YOUR ORDER IS CONFIRMED");
 
         String orderNumber = checkoutConfirmationPage.getOrderNumber();
+        assertThat(orderNumber).isNotEmpty();
 
         topMenuPage.goToMyAccount();
 
         myAccountPage.goToHistoryOfOrders();
-        // pkt 5 do zmiennej zapisz wygenerowany numer zamowienia
 
-        // przejdz do 'Your account'
-        // przejdz do ORDER HISTORY AND DETAILS
-        // sprawdz czy na stronie z historia zamowien znajduje się numer zamowienia z pkt 5
+        assertThat(historyOfOrdersPage.getOrdersNumbers()).contains(orderNumber);
 
-        // otworz zamowienie o numerze z pkt 5
-        // sprzeczy czy tekst "Order Reference JBCERFQZQ - placed on 06/11/2022" zawiera numer zamowienia z pkt5
-        // ****dla chetnych spr pozostałe szczegoly zamowienia
+        historyOfOrdersPage.openOrder(orderNumber);
 
+        assertThat(orderDetailsPage.getOrderInfos()).contains(orderNumber);
     }
 }
