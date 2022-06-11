@@ -27,4 +27,17 @@ public class SearchTests extends Pages {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void shouldFindProductWithName2() {
+        String productToSearch = productsGridPage.getRandomProductNameFromHomePage();
+
+        topMenuPage.searchForProduct(productToSearch);
+
+        List<String> searchResults = productsGridPage.getProductNames();
+
+        Assertions.assertThat(searchResults).isNotEmpty();
+
+        //Assertions.assertThat(searchResults).elements().contains(productToSearch);
+    }
 }

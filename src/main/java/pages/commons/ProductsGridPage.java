@@ -45,4 +45,13 @@ public class ProductsGridPage extends BasePage {
 
         return Integer.parseInt(quantityOfProducts);
     }
+
+    public void openProductWithName(String productName) {
+        for (WebElement element : getProducts(8)){
+            if(element.getText().equals(productName)){
+                element.click();
+                return;
+            }
+        }
+    }
 }
