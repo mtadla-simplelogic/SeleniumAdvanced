@@ -16,6 +16,14 @@ public class CategoryTest extends Pages {
 
     @Test
     public void shouldVerifyCategoriesDynamic() {
+
+
+
+
+
+
+
+
         assertThat(topMenuPage.getNumerOfCategories()).isNotZero();
 
         for (int i = 0; i < topMenuPage.getNumerOfCategories(); i++) {

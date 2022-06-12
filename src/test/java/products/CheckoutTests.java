@@ -4,6 +4,7 @@ import base.Pages;
 import helpers.RandomHelper;
 import models.SocialTitle;
 import org.testng.annotations.Test;
+import steps.CheckoutSteps;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -19,11 +20,11 @@ public class CheckoutTests extends Pages {
 
         cartPage.proceedToCheckout();
 
-        fillPersonalInfo();
+        new CheckoutSteps(driver).fillPersonalInfo();
 
         personalInfoCheckoutPage.goToAddressCheckoutStep();
 
-        fillAddressInfo();
+        new CheckoutSteps(driver).fillAddressInfo();
 
         shippingCheckoutPage.confirmDeliveryOption();
 
@@ -47,21 +48,7 @@ public class CheckoutTests extends Pages {
         assertThat(orderDetailsPage.getOrderInfos()).contains(orderNumber);
     }
 
-    private void fillAddressInfo() {
-        addressCheckoutPage.setAddress("testtest")
-                .selectState("Arizona")
-                .setPostcode("77777")
-                .setCity("xxxx")
-                .confirmAddresses();
-    }
 
-    private void fillPersonalInfo() {
-        personalInfoCheckoutPage
-                .selectSocialTitle(SocialTitle.Mr)
-                .setFirstName("Jan")
-                .setLastName("Kowalski")
-                .setEmail(RandomHelper.getRandomEmail())
-                .setPassword("123qwe")
-                .acceptPolices();
-    }
+
+
 }
