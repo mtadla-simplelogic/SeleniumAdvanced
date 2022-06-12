@@ -16,12 +16,16 @@ public class CartTests extends Pages {
 
         cartPopupPage.proceedToCheckout();
 
+        Assertions.assertThat(cartPage.isEmptyMsgLblDisplayed()).isFalse();
+
         Assertions.assertThat(cartPage.getProductName()).isEqualTo("HUMMINGBIRD T-SHIRT");
         Assertions.assertThat(cartPage.getProductQuantity()).isEqualTo("3");
         Assertions.assertThat(cartPage.getProductPrice()).isEqualTo("$19.12");
         Assertions.assertThat(cartPage.getTotalProductPrice()).isEqualTo("$57.36");
 
         cartPage.removeProductFromCart();
+
         Assertions.assertThat(cartPage.getEmptyBasketMsg()).isEqualTo("There are no more items in your cart");
+        Assertions.assertThat(cartPage.isEmptyMsgLblDisplayed()).isTrue();
     }
 }

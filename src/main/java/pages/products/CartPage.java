@@ -59,4 +59,8 @@ public class CartPage extends BasePage {
     public void proceedToCheckout() {
         click(proceedToCheckoutBtn);
     }
+
+    public boolean isEmptyMsgLblDisplayed() {
+        return isDisplayed(By.cssSelector(".no-items"));
+    }
 }
