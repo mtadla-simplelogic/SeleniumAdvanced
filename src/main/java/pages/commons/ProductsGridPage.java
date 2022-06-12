@@ -18,6 +18,9 @@ public class ProductsGridPage extends BasePage {
     @FindBy(css = ".total-products")
     private WebElement totalProducts;
 
+    @FindBy(css = ".product-title")
+    private List<WebElement> allProducts;
+
     public List<WebElement> getProducts(int expectedAmountOfProducts) {
         return wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".product-title"), expectedAmountOfProducts));
     }
@@ -30,13 +33,17 @@ public class ProductsGridPage extends BasePage {
     public List<String> getProductNames() {
         List<String> productsNames = new ArrayList<>();
 
-        for (WebElement product : getProducts(getQuantityOfProducts())) {
+        for (WebElement product : getProducts(getQuantityOfProductsFromCategoryHeader())) {
             productsNames.add(product.getText());
         }
         return productsNames;
     }
 
-    private int getQuantityOfProducts() {
+    public int getQuantityOfProducts() {
+        return allProducts.size();
+    }
+
+    public int getQuantityOfProductsFromCategoryHeader() {
         String quantityOfProducts = totalProducts.getText()
                 .replace("There is ", "")
                 .replace(" product.", "")

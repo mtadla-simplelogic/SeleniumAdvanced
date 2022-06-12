@@ -8,6 +8,7 @@ import pages.user.*;
 
 public class Pages extends TestBase {
     public LoginPage loginPage;
+    public CategoryPage categoryPage;
     public RegistrationPage registrationPage;
     public TopMenuPage topMenuPage;
     public ProductsGridPage productsGridPage;
@@ -25,6 +26,7 @@ public class Pages extends TestBase {
 
     @BeforeMethod
     public void pagesSetup() {
+        categoryPage = new CategoryPage(driver);
         addressCheckoutPage = new AddressCheckoutPage(driver);
         paymentsCheckoutPage = new PaymentsCheckoutPage(driver);
         checkoutConfirmationPage = new CheckoutConfirmationPage(driver);

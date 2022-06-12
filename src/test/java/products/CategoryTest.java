@@ -3,15 +3,34 @@ package products;
 import base.Pages;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class CategoryTest extends Pages {
 
     @Test
-    public void shouldVerifyCategories(){
-        // 1 przeiteruj po wszystkich kategoriach
-        // za kazdym razem sprawc czy:
-        // --otowrzyla sie katogoria na ktora kliknąłeś
-        // --ilość załadowanych produktów
-        // --jest równa ilości podanych w tyule kategorii
-        // *** dla chetnych: rowniez podkategorie
+    public void shouldVerifyCategoriesHardcoded() {
+        verifyCategory("CLOTHES");
+        verifyCategory("ACCESSORIES");
+        verifyCategory("ART");
+    }
+
+    @Test
+    public void shouldVerifyCategoriesDynamic() {
+        assertThat(topMenuPage.getNumerOfCategories()).isNotZero();
+
+        for (int i = 0; i < topMenuPage.getNumerOfCategories(); i++) {
+            verifyCategory(i);
+        }
+    }
+
+    private void verifyCategory(int categoryNumber) {
+        verifyCategory(topMenuPage.getNameOfCategory(categoryNumber));
+    }
+
+    private void verifyCategory(String categoryName) {
+        topMenuPage.openCategory(categoryName);
+        int expectedProductQuantity = productsGridPage.getQuantityOfProductsFromCategoryHeader();
+        assertThat(productsGridPage.getQuantityOfProducts()).isEqualTo(expectedProductQuantity);
+        assertThat(categoryPage.getTitle()).isEqualTo(categoryName);
     }
 }

@@ -10,10 +10,14 @@ public class ShippingCheckoutPage extends BasePage {
         super(driver);
     }
 
+    @FindBy(css = "#checkout-delivery-step [type='radio']")
+    private WebElement asd;
+
     @FindBy(css = "[name='confirmDeliveryOption']")
     private WebElement confirmDeliveryOption;
 
     public void confirmDeliveryOption() {
+        System.out.println("xxxxxxxxxxxxxxx" + asd.isSelected());
         click(confirmDeliveryOption);
     }
 }

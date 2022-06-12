@@ -19,21 +19,11 @@ public class CheckoutTests extends Pages {
 
         cartPage.proceedToCheckout();
 
-        personalInfoCheckoutPage
-                .selectSocialTitle(SocialTitle.Mr)
-                .setFirstName("Jan")
-                .setLastName("Kowalski")
-                .setEmail(RandomHelper.getRandomEmail())
-                .setPassword("123qwe")
-                .acceptPolices();
+        fillPersonalInfo();
 
         personalInfoCheckoutPage.goToAddressCheckoutStep();
 
-        addressCheckoutPage.setAddress("testtest")
-                .selectState("Arizona")
-                .setPostcode("77777")
-                .setCity("xxxx")
-                .confirmAddresses();
+        fillAddressInfo();
 
         shippingCheckoutPage.confirmDeliveryOption();
 
@@ -55,5 +45,23 @@ public class CheckoutTests extends Pages {
         historyOfOrdersPage.openOrder(orderNumber);
 
         assertThat(orderDetailsPage.getOrderInfos()).contains(orderNumber);
+    }
+
+    private void fillAddressInfo() {
+        addressCheckoutPage.setAddress("testtest")
+                .selectState("Arizona")
+                .setPostcode("77777")
+                .setCity("xxxx")
+                .confirmAddresses();
+    }
+
+    private void fillPersonalInfo() {
+        personalInfoCheckoutPage
+                .selectSocialTitle(SocialTitle.Mr)
+                .setFirstName("Jan")
+                .setLastName("Kowalski")
+                .setEmail(RandomHelper.getRandomEmail())
+                .setPassword("123qwe")
+                .acceptPolices();
     }
 }
