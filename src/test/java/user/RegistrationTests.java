@@ -2,6 +2,7 @@ package user;
 
 import base.Pages;
 import helpers.RandomHelper;
+import helpers.ScreenshotHelper;
 import models.SocialTitle;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,7 @@ public class RegistrationTests extends Pages {
                 .submitForm();
 
         assertThat(topMenuPage.getLoggedInUserName()).isEqualTo("Jan Kowalski");
+        ScreenshotHelper.takeScreenshot(driver);
     }
 
     @Test
